@@ -3,7 +3,7 @@
     "description": "",
     "type": "six-module",
     "require": {
-        "6admin/composer-installer": "dev-master"
+        "6admin/composer-installer": "~1.0"
     },
     "authors": [
         {
