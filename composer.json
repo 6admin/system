@@ -1,0 +1,19 @@
+{
+    "name": "6admin/system",
+    "description": "",
+    "type": "six-module",
+    "require": {
+        "6admin/composer-installer": "dev-master"
+    },
+    "authors": [
+        {
+            "name": "Anael Favre",
+            "email": "anael.favre@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Modules\\System\\": ""
+        }
+    }
+}
