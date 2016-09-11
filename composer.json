@@ -15,5 +15,13 @@
         "psr-4": {
             "Modules\\System\\": ""
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "apt install whois"
+        ],
+        "post-update-cmd": [
+            "apt install whois"
+        ]
     }
 }

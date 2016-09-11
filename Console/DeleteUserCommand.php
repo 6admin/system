@@ -5,6 +5,7 @@ namespace Modules\System\Console;
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
+use Modules\System\Repositories\UserRepository;
 
 class DeleteUserCommand extends Command
 {
@@ -20,16 +21,25 @@ class DeleteUserCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description.';
+    protected $description = 'Delete the unix user.';
+
+    /**
+     * The repository
+     *
+     * @var UserRepository
+     */
+    protected $users;
 
     /**
      * Create a new command instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(UserRepository $users)
     {
         parent::__construct();
+
+        $this->users = $users;
     }
 
     /**
@@ -39,7 +49,9 @@ class DeleteUserCommand extends Command
      */
     public function fire()
     {
-        //
+        $this->users->delete($this->argument('name'), [
+            'files' => $this->option('files')
+        ]);
     }
 
     /**
@@ -50,7 +62,7 @@ class DeleteUserCommand extends Command
     protected function getArguments()
     {
         return [
-            ['example', InputArgument::REQUIRED, 'An example argument.'],
+            ['name', InputArgument::REQUIRED, 'The name of the unix account to delete.'],
         ];
     }
 
@@ -62,7 +74,7 @@ class DeleteUserCommand extends Command
     protected function getOptions()
     {
         return [
-            ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+            ['files', null, InputOption::VALUE_NONE, 'Delete the home folder and the mail pool of the user.', null],
         ];
     }
 }

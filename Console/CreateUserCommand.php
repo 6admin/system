@@ -49,7 +49,12 @@ class CreateUserCommand extends Command
      */
     public function fire()
     {
-        $this->users->create();
+        $this->users->create(
+            array_only(
+                array_merge($this->arguments(), $this->options()), 
+                ["name", "password", "home", "group"]
+            )
+        );
     }
 
     /**
@@ -60,7 +65,7 @@ class CreateUserCommand extends Command
     protected function getArguments()
     {
         return [
-            ['example', InputArgument::REQUIRED, 'An example argument.'],
+            ['name', InputArgument::REQUIRED, 'The name of the unix account.'],
         ];
     }
 
@@ -72,7 +77,9 @@ class CreateUserCommand extends Command
     protected function getOptions()
     {
         return [
-            ['example', null, InputOption::VALUE_OPTIONAL, 'An example option.', null],
+            ['password', 'p', InputOption::VALUE_OPTIONAL, 'The password of the account (leave blank for no cli access on secure installations).', null],
+            ['home', null, InputOption::VALUE_OPTIONAL, 'Create and assign a home directory to this user.', null],
+            ['group', null, InputOption::VALUE_OPTIONAL, 'Assign a specific group for this user.', null],
         ];
     }
 }
