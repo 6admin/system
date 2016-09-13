@@ -6,6 +6,6 @@
     "active": 1,
     "order": 0,
     "providers": [
-        "Modules\\System\\Providers\\SystemServiceProvider"
+        "Services\\System\\Providers\\SystemServiceProvider"
     ]
 }
