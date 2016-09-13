@@ -1,7 +1,7 @@
 {
     "name": "6admin/system",
     "description": "",
-    "type": "six-module",
+    "type": "six-service",
     "require": {
         "6admin/composer-installer": "~1.0"
     },
@@ -13,7 +13,7 @@
     ],
     "autoload": {
         "psr-4": {
-            "Modules\\System\\": ""
+            "Services\\System\\": ""
         }
     },
     "scripts": {

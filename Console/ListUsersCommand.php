@@ -1,11 +1,11 @@
 <?php
 
-namespace Modules\System\Console;
+namespace Services\System\Console;
 
 use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputArgument;
-use Modules\System\Repositories\UserRepository;
+use Services\System\Repositories\UserRepository;
 
 class ListUsersCommand extends Command
 {

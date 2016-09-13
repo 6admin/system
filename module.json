@@ -7,9 +7,5 @@
     "order": 0,
     "providers": [
         "Modules\\System\\Providers\\SystemServiceProvider"
-    ],
-    "aliases":{},
-    "files": [
-        "start.php"
     ]
 }

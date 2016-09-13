@@ -1,6 +1,6 @@
 <?php
 
-namespace Modules\System\Providers;
+namespace Services\System\Providers;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -20,9 +20,7 @@ class SystemServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->registerTranslations();
         $this->registerConfig();
-        $this->registerViews();
         $this->registerCommands();
     }
 
@@ -52,47 +50,16 @@ class SystemServiceProvider extends ServiceProvider
     }
 
     /**
-     * Register views.
+     * Register commands.
      *
      * @return void
      */
-    public function registerViews()
-    {
-        $viewPath = base_path('resources/views/modules/system');
-
-        $sourcePath = __DIR__.'/../Resources/views';
-
-        $this->publishes([
-            $sourcePath => $viewPath
-        ]);
-
-        $this->loadViewsFrom(array_merge(array_map(function ($path) {
-            return $path . '/modules/system';
-        }, \Config::get('view.paths')), [$sourcePath]), 'system');
-    }
-
-    /**
-     * Register translations.
-     *
-     * @return void
-     */
-    public function registerTranslations()
-    {
-        $langPath = base_path('resources/lang/modules/system');
-
-        if (is_dir($langPath)) {
-            $this->loadTranslationsFrom($langPath, 'system');
-        } else {
-            $this->loadTranslationsFrom(__DIR__ .'/../Resources/lang', 'system');
-        }
-    }
-
     public function registerCommands()
     {
         $this->commands([
-            \Modules\System\Console\CreateUserCommand::class,
-            \Modules\System\Console\DeleteUserCommand::class,
-            \Modules\System\Console\ListUsersCommand::class,
+            \Services\System\Console\CreateUserCommand::class,
+            \Services\System\Console\DeleteUserCommand::class,
+            \Services\System\Console\ListUsersCommand::class,
         ]);
     }
 

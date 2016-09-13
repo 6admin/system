@@ -1,4 +1,4 @@
 <?php
-namespace Modules\System\Exceptions;
+namespace Services\System\Exceptions;
 
 class UserPasswordEncryptionException extends \Exception {}
