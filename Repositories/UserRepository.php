@@ -1,5 +1,5 @@
 <?php
-namespace Modules\System\Repositories;
+namespace Services\System\Repositories;
 
 use App\Contracts\Repository;
 use App\Repository\HasInputValidation;
@@ -88,7 +88,7 @@ class UserRepository implements Repository
                 $hash = SystemCommand::run('/usr/bin/mkpasswd', $opts['password'], ['-H' => 'md5']);
 
                 if(!isset($hash[0]) OR empty($hash[0])) {
-                    throw new \Modules\System\Exceptions\UserPasswordEncryptionException("Invalid hash returned by mkpasswd : " . var_export($hash, true));
+                    throw new \Services\System\Exceptions\UserPasswordEncryptionException("Invalid hash returned by mkpasswd : " . var_export($hash, true));
                 }
 
                 $opts['password'] = $hash[0];
